@@ -98,6 +98,8 @@ public class ElBaldi {
         System.out.println("La liste des produits  apres suppression ");
 
         System.out.println(prod.afficherProduit());
+        
+        System.out.println();
        
        
        
