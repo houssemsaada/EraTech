@@ -37,7 +37,7 @@ public class ProduitCRUD implements InterfaceProduitCRUD {
             ps.setFloat(6, p.getMarge());
             ps.setFloat(7, p.getPrix_vente());
             ps.setInt(8, p.getQuantite());
-             ps.setString(9, p.getId_user());
+            ps.setInt(9, p.getId_user());
              ps.setInt(10, p.getId_categorie());        
              ps.executeUpdate();
             System.out.println("Produit ajoutee avec succes ");
@@ -94,7 +94,7 @@ public class ProduitCRUD implements InterfaceProduitCRUD {
              p.setMarge(RS.getFloat(6));
              p.setPrix_vente(RS.getFloat(7));
              p.setQuantite(RS.getInt(8));
-             p.setId_user(RS.getString(9));
+             p.setId_user(RS.getInt(9));
              p.setId_categorie(RS.getInt(10));
              list.add(p);
             }
@@ -120,7 +120,7 @@ public class ProduitCRUD implements InterfaceProduitCRUD {
                 p.setMarge(RS.getFloat(6));
                 p.setPrix_vente(RS.getFloat(7));
                 p.setQuantite(RS.getInt(8));
-                p.setId_user(RS.getString(9));
+                p.setId_user(RS.getInt(9));
                 p.setId_categorie(RS.getInt(10));
             }
         } catch (SQLException ex) {
@@ -145,7 +145,7 @@ public class ProduitCRUD implements InterfaceProduitCRUD {
                 p.setMarge(RS.getFloat(6));
                 p.setPrix_vente(RS.getFloat(7));
                 p.setQuantite(RS.getInt(8));
-                p.setId_user(RS.getString(9));
+                p.setId_user(RS.getInt(9));
                 p.setId_categorie(RS.getInt(10));
                 list.add(p);
             }
@@ -172,7 +172,7 @@ public class ProduitCRUD implements InterfaceProduitCRUD {
             p.setMarge(RS.getFloat(6));
             p.setPrix_vente(RS.getFloat(7));
             p.setQuantite(RS.getInt(8));
-            p.setId_user(RS.getString(9));
+            p.setId_user(RS.getInt(9));
             p.setId_categorie(RS.getInt(10));
             list.add(p);
         }

@@ -18,13 +18,14 @@ public class produit {
     private float marge;
     private float prix_vente;
     private int quantite;
-    private String id_user;
+    private int id_user;
     private int id_categorie;
 
     public produit(){
         
     }
-    public produit(String ref_produit, String libelle, String description, String image, float prix_achat, float marge, float prix_vente, int quantite, String id_user, int id_categorie) {
+
+    public produit(String ref_produit, String libelle, String description, String image, float prix_achat, float marge, float prix_vente, int quantite, int id_user, int id_categorie) {
         this.ref_produit = ref_produit;
         this.libelle = libelle;
         this.description = description;
@@ -101,11 +102,11 @@ public class produit {
         this.quantite = quantite;
     }
 
-    public String getId_user() {
+    public int getId_user() {
         return id_user;
     }
 
-    public void setId_user(String id_user) {
+    public void setId_user(int id_user) {
         this.id_user = id_user;
     }
 
@@ -121,7 +122,6 @@ public class produit {
     public String toString() {
         return "produit{" + "ref_produit=" + ref_produit + ", libelle=" + libelle + ", description=" + description + ", image=" + image + ", prix_achat=" + prix_achat + ", marge=" + marge + ", prix_vente=" + prix_vente + ", quantite=" + quantite + ", id_user=" + id_user + ", id_categorie=" + id_categorie + '}';
     }
-    
     
     
     

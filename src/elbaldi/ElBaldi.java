@@ -23,15 +23,19 @@ public class ElBaldi {
         //ajouter categorie
         
          categorie c1 = new categorie(2, "art");
+         categorie c2 = new categorie(3, "art et culture");
          CategorieCRUD categ = new CategorieCRUD();
         
          categ.ajouterCategorie(c1);
+         categ.ajouterCategorie(c2);
 
         //ajouter produit
-        produit p1 = new produit("f02","tableau","tableau artistique","zzz",45.1f,0.3f,55.5f,2,"user 1",1);
+        produit p1 = new produit("f03","tableau","tableau artistique","zzz",45.1f,0.3f,55.5f,2,1,2);
+        produit p2 = new produit("f04","piano","musique","zdd",45.1f,0.3f,55.5f,3,1,2);
         ProduitCRUD prod = new ProduitCRUD();
         
         prod.ajouterProduit(p1);
+        prod.ajouterProduit(p2);
         System.out.println("La liste des categories apres l'ajout ");
         //afficher la liste des categories
         System.out.println(categ.affichercategorie());
@@ -40,14 +44,16 @@ public class ElBaldi {
 
         //afficher la liste des produits
         System.out.println(prod.afficherProduit());
+      
         //modifier categorie
         categorie c = categ.getCategorieById(2); //Récupérer une categorie existante avec un  id categorie existant
-       c.setNom_categorie("art et culture"); //Modifier le nom de categorie
+       c.setNom_categorie("fan _modif"); //Modifier le nom de categorie
        categ.modifierCategorie(c); //Appeler la méthode pour mettre à jour la categorie
         //afficher categorie apres modification
       System.out.println("La liste des categories apres modification ");
 
         System.out.println(categ.affichercategorie());
+        
        //modifier produit
        produit p = prod.getByRefProduit("f02"); //Récupérer un produit existant avec une référence de produit existante
        p.setLibelle("tableau de yasmine"); //Modifier le libellé de produit
@@ -62,7 +68,7 @@ public class ElBaldi {
        //recuperer categorie par id categorie
        System.out.println("La categorie dont l'id donnee en parametre ");
 
-       System.out.println(categ.getCategorieById(1));
+       System.out.println(categ.getCategorieById(2));
         
        System.out.println("Le produit dont la reference donnee en parametre ");
 
@@ -83,7 +89,7 @@ public class ElBaldi {
        System.out.println("La liste des categories par nom de categorie ");
 
        //filtrer les categorie par nom de categorie 
-       System.out.println(categ.filtrerCategorie("vetement"));
+       System.out.println(categ.filtrerCategorie("art"));
        
        //supprimer categorie
         
@@ -98,8 +104,9 @@ public class ElBaldi {
         System.out.println("La liste des produits  apres suppression ");
 
         System.out.println(prod.afficherProduit());
+
         
-        System.out.println();
+       
        
        
        
