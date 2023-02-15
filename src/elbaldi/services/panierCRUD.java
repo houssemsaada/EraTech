@@ -30,10 +30,10 @@ public class panierCRUD implements panierInterfaceCRUD {
     public void ajouterPanier(panier p) {
         if (p.getId_panier() != 0) {
             try {
-                String req = "INSERT INTO `panier` (`id_panier`,`id_produit`, `nombre_article`, `quantite_produit`, `total_panier`) VALUES (?,?,?,?,?)";
+                String req = "INSERT INTO `panier` (`id_panier`,`ref_produit`, `nombre_article`, `quantite_produit`, `total_panier`) VALUES (?,?,?,?,?)";
                 PreparedStatement ps = conn.prepareStatement(req);
                 ps.setInt(1, p.getId_panier());
-                ps.setInt(2, p.getId_produit());
+                ps.setString(2, p.getRef_produit());
                 ps.setInt(3, p.getNombre_article());
                 ps.setInt(4, p.getQuantite_produit());
                 ps.setFloat(5, p.getTotal_panier());
@@ -44,9 +44,9 @@ public class panierCRUD implements panierInterfaceCRUD {
             }
         } else {
             try {
-                String req = "INSERT INTO `panier` (`id_produit`, `nombre_article`, `quantite_produit`, `total_panier`) VALUES (?,?,?,?)";
+                String req = "INSERT INTO `panier` (`ref_produit`, `nombre_article`, `quantite_produit`, `total_panier`) VALUES (?,?,?,?)";
                 PreparedStatement ps = conn.prepareStatement(req);
-                ps.setInt(1, p.getId_produit());
+                ps.setString(1, p.getRef_produit());
                 ps.setInt(2, p.getNombre_article());
                 ps.setInt(3, p.getQuantite_produit());
                 ps.setFloat(4, p.getTotal_panier());
@@ -61,9 +61,9 @@ public class panierCRUD implements panierInterfaceCRUD {
     @Override
     public void modifierPanier(panier p) {
         try {
-            String req = "UPDATE `panier` SET `id_produit` = ?, `nombre_article` = ? , `quantite_produit` = ?, `total_panier` = ? WHERE id_panier  = ? ";
+            String req = "UPDATE `panier` SET `ref_produit` = ?, `nombre_article` = ? , `quantite_produit` = ?, `total_panier` = ? WHERE id_panier  = ? ";
             PreparedStatement ps = conn.prepareStatement(req);
-            ps.setInt(1, p.getId_produit());
+            ps.setString(1, p.getRef_produit());
             ps.setInt(2, p.getNombre_article());
             ps.setInt(3, p.getQuantite_produit());
             ps.setFloat(4, p.getTotal_panier());
@@ -100,7 +100,7 @@ public class panierCRUD implements panierInterfaceCRUD {
 
                 panier p = new panier();
                 p.setId_panier(RS.getInt(1));
-                p.setId_produit(RS.getInt(2));
+                p.setRef_produit(RS.getString(2));
                 p.setNombre_article(RS.getInt(3));
                 p.setQuantite_produit(RS.getInt(4));
                 p.setTotal_panier(RS.getFloat(5));

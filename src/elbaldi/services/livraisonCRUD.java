@@ -10,6 +10,7 @@ import elbaldi.models.commande;
 import elbaldi.models.livraison;
 import elbaldi.util.MyConnection;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -111,6 +112,74 @@ public class livraisonCRUD implements livraisonInterfaceCRUD {
         }
 
         return list;
+    }
+
+    @Override
+    public List<livraison> filtreByDate(Date date_livraison) {
+        List<livraison> livraisons = new ArrayList<>();
+        try {
+            String fil = "SELECT * FROM livraison WHERE date_livraison = ?";
+            PreparedStatement ps = conn.prepareStatement(fil);
+            ps.setDate(1, date_livraison);
+            ResultSet RS = ps.executeQuery();
+            while (RS.next()) {
+                livraison l = new livraison();
+                l.setId_livraison(RS.getInt(1));
+                l.setId_cmd(RS.getInt(2));
+                l.setStatus_livraison(RS.getString(3));
+                l.setAdresse_livraison(RS.getString(4));
+                l.setDate_livraison(RS.getDate(5));
+                livraisons.add(l);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return livraisons;
+    }
+
+    @Override
+    public List<livraison> sortlivraisonByDate() {
+        List<livraison> livraisons = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM livraison ORDER BY date_livraison DESC";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet RS = ps.executeQuery();
+            while (RS.next()) {
+                livraison l = new livraison();
+                l.setId_livraison(RS.getInt(1));
+                l.setId_cmd(RS.getInt(2));
+                l.setStatus_livraison(RS.getString(3));
+                l.setAdresse_livraison(RS.getString(4));
+                l.setDate_livraison(RS.getDate(5));
+                livraisons.add(l);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return livraisons;
+    }
+
+    @Override
+    public List<livraison> filtreBycommande(commande c) {
+        List<livraison> livraisons = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM livraison WHERE id_cmd = ?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, c.getId_cmd());
+            ResultSet RS = ps.executeQuery();
+            while (RS.next()) {
+                livraison l = new livraison();
+                l.setId_livraison(RS.getInt(1));
+                l.setId_cmd(RS.getInt(2));
+                l.setStatus_livraison(RS.getString(3));
+                l.setAdresse_livraison(RS.getString(4));
+                l.setDate_livraison(RS.getDate(5));
+                livraisons.add(l);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return livraisons;
     }
 
 }

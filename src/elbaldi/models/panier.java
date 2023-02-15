@@ -11,7 +11,8 @@ package elbaldi.models;
  */
 public class panier {
 
-    private int id_panier, id_produit, nombre_article, quantite_produit;
+    private int id_panier, nombre_article, quantite_produit;
+    private String ref_produit ; 
     private float total_panier;
     //constructeur par defaut
 
@@ -19,16 +20,16 @@ public class panier {
     }
     ///constructeur parametre 
 
-    public panier(int id_panier, int id_produit, int nombre_article, int quantite_produit, float total_panier) {
+    public panier(int id_panier, String ref_produit, int nombre_article, int quantite_produit, float total_panier) {
         this.id_panier = id_panier;
-        this.id_produit = id_produit;
+        this.ref_produit = ref_produit;
         this.nombre_article = nombre_article;
         this.quantite_produit = quantite_produit;
         this.total_panier = total_panier;
     }
 
-    public panier(int id_produit, int nombre_article, int quantite_produit, float total_panier) {
-        this.id_produit = id_produit;
+    public panier(String ref_produit, int nombre_article, int quantite_produit, float total_panier) {
+        this.ref_produit = ref_produit;
         this.nombre_article = nombre_article;
         this.quantite_produit = quantite_produit;
         this.total_panier = total_panier;
@@ -39,9 +40,11 @@ public class panier {
         return id_panier;
     }
 
-    public int getId_produit() {
-        return id_produit;
+    public String getRef_produit() {
+        return ref_produit;
     }
+
+
 
     public int getNombre_article() {
         return nombre_article;
@@ -60,9 +63,11 @@ public class panier {
         this.id_panier = id_panier;
     }
 
-    public void setId_produit(int id_produit) {
-        this.id_produit = id_produit;
+    public void setRef_produit(String ref_produit) {
+        this.ref_produit = ref_produit;
     }
+
+    
 
     public void setNombre_article(int nombre_article) {
         this.nombre_article = nombre_article;
@@ -78,7 +83,9 @@ public class panier {
 
     @Override
     public String toString() {
-        return "panier{" + "id_panier=" + id_panier + ", id_produit=" + id_produit + ", nombre_article=" + nombre_article + ", quantite_produit=" + quantite_produit + ", total_panier=" + total_panier + '}';
+        return "panier{" + "id_panier=" + id_panier + ", nombre_article=" + nombre_article + ", quantite_produit=" + quantite_produit + ", ref_produit=" + ref_produit + ", total_panier=" + total_panier + '}';
     }
+
+    
 
 }

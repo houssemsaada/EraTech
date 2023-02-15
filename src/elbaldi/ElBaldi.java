@@ -31,18 +31,18 @@ public class ElBaldi {
         // TODO code application logic here
         //  long millis=System.currentTimeMillis();  
         // java.sql.Date date=new java.sql.Date(millis);
-        String date_comm = "2023-02-15";
+        String date_comm = "2023-02-10";
         Date date_com = Date.valueOf(date_comm);
         String date_liv = "2023-02-18";
         Date date_livr = Date.valueOf(date_liv);
-        commande c1 = new commande(115, 22, "depbb", date_com);
+        commande c1 = new commande(1,2, "delic", date_com);
         CommandeCRUD comm = new CommandeCRUD();
         //comm.ajouterCommande(c1);
 
         livraison l1 = new livraison(18, "cbon", "tozeuur", date_livr, c1);
         livraisonCRUD liv = new livraisonCRUD();
         
-        panier p1 = new panier(3,14,5,5,22);
+        panier p1 = new panier("aaa123",5,5,22);
         panierCRUD pan = new panierCRUD();
         //pan.ajouterPanier(p1);
         //pan.modifierPanier(p1);
@@ -53,11 +53,17 @@ public class ElBaldi {
         //liv.modifierLivraison(l1, c1);
         //liv.supprimerLivraison(6);
         //System.out.println(liv.afficherLivraison());
+        //System.out.println(liv.filtreByDate(date_livr));
+        //System.out.println(liv.sortlivraisonByDate());
+        System.out.println(liv.filtreBycommande(c1));
         //--------------------------------
-        // comm.ajouterCommande(c1);
+        //comm.ajouterCommande(c1);
         //comm.modifierCommande(c1);
         //comm.supprimerCommande(1);
         // System.out.println( comm.affichercommande());
+        //System.out.println(comm.filtreByDate(date_com));
+        //System.out.println(comm.sortCommandesByDate());
+        //System.out.println(comm.filtreByuser(2));
     }
 
 }

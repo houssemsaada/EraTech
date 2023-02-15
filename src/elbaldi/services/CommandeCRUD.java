@@ -9,6 +9,7 @@ import elbaldi.interfaces.commandeInterfaceCRUD;
 import elbaldi.models.commande;
 import elbaldi.util.MyConnection;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -84,7 +85,7 @@ public class CommandeCRUD implements commandeInterfaceCRUD {
     }
 
     @Override
-    public List<commande> affichercommande() {
+    public List<commande> afficherCommande() {
         List<commande> list = new ArrayList<>();
         try {
             String req = "Select * from commande";
@@ -106,4 +107,68 @@ public class CommandeCRUD implements commandeInterfaceCRUD {
         return list;
     }
 
+    @Override
+    public List<commande> filtreByDate(Date date_commande) {
+        List<commande> commandes = new ArrayList<>();
+        try {
+            String fil = "SELECT * FROM commande WHERE date_cmd = ?";
+            PreparedStatement ps = conn.prepareStatement(fil);
+            ps.setDate(1, date_commande);
+            ResultSet RS = ps.executeQuery();
+            while (RS.next()) {
+                commande c = new commande();
+                c.setId_cmd(RS.getInt(1));
+                c.setEtat(RS.getString(2));
+                c.setDate_cmd(RS.getDate(3));
+                c.setId_user(RS.getInt(4));
+                commandes.add(c);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return commandes;
+    }
+
+    @Override
+    public List<commande> sortCommandesByDate() {
+        List<commande> commandes = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM commande ORDER BY date_cmd DESC";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                commande c = new commande();
+                c.setId_cmd(rs.getInt("id_cmd"));
+                c.setId_user(rs.getInt("id_user"));
+                c.setEtat(rs.getString("etat"));
+                c.setDate_cmd(rs.getDate("date_cmd"));
+                commandes.add(c);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return commandes;
+    }
+
+    @Override
+    public List<commande> filtreByuser(int id_user) {
+        List<commande> commandes = new ArrayList<>();
+    try {
+        String query = "SELECT * FROM commande WHERE id_user = ?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, id_user);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            commande c = new commande();
+            c.setId_cmd(rs.getInt("id_cmd"));
+            c.setId_user(rs.getInt("id_user"));
+            c.setEtat(rs.getString("etat"));
+            c.setDate_cmd(rs.getDate("date_cmd"));
+            commandes.add(c);
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return commandes;
+    }
 }
